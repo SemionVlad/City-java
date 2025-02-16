@@ -9,6 +9,7 @@
  * 
  * @author Shimon Esterkin (SemionVlad)
  * @version 2023B
+ * 
  */
 public class City {
     
@@ -18,15 +19,35 @@ public class City {
     private Point _centralStation;
     private long _numOfResidents;
     private int _noOfNeighborhoods;
-    private Date _dateOfEstablishment;
+    private Date _dateEstablished;
+
+    /**
+     * Formats a city's information as a string.
+     *
+     * @param city the city to format
+     * @return formatted string containing city details
+     */
+    private String cityToString() {
+        return String.format(
+            "City Name: %s\n" +
+            "Date of Establishment: " +
+            "City Center: %s\n" +
+            "Central Station: %s\n" +
+            "Number of Residents: %d\n" +
+            "Number of Neighborhoods: %d\n",
+            this._cityName.toString(),
+            this._dateEstablished.toString(),
+            this._cityCenter.toString(),
+            this._centralStation.toString(),
+            this._numOfResidents,
+            this._noOfNeighborhoods
+        );
+    }
 
     /**
      * Constructs a new City with all attributes including establishment date.
      *
-     * @param cityName           the name of the city
-     * @param d                  day of establishment
-     * @param m                  month of establishment
-     * @param y                  year of establishment
+     * @param cityName           the name of the city                 year of establishment
      * @param cityCenterX        x-coordinate of city center
      * @param cityCenterY        y-coordinate of city center
      * @param centralStationX    x-coordinate of central station
@@ -37,7 +58,7 @@ public class City {
     public City(String cityName, int d, int m, int y, int cityCenterX, int cityCenterY, 
                 int centralStationX, int centralStationY, long numOfResidents, int noOfNeighborhoods) {
         this._cityName = new String(cityName);
-        this._dateOfEstablishment = new Date(d, m, y);
+        this._dateEstablished = new Date(d, m, y);
         this._cityCenter = new Point(cityCenterX, cityCenterY);
         this._centralStation = new Point(centralStationX, centralStationY);
         this._noOfNeighborhoods = (noOfNeighborhoods < 1) ? 1 : noOfNeighborhoods;
@@ -55,9 +76,6 @@ public class City {
         this._centralStation = new Point(other.getCentralStation());
         this._noOfNeighborhoods = (other.getNoOfNeighborhoods() < 1) ? 1 : other.getNoOfNeighborhoods();
         this._numOfResidents = (other.getNumOfResidents() < 0) ? 0 : other.getNumOfResidents();
-        if (other._dateOfEstablishment != null) {
-            this._dateOfEstablishment = new Date(other.getDateOfEstablishment());
-        }
     }
 
     // Getters
@@ -67,15 +85,6 @@ public class City {
      */
     public String getCityName() {
         return this._cityName;
-    }
-
-    /**
-     * @return a copy of the establishment date
-     */
-    public Date getDateOfEstablishment() {
-        return new Date(this._dateOfEstablishment.getDay(), 
-                       this._dateOfEstablishment.getMonth(), 
-                       this._dateOfEstablishment.getYear());
     }
 
     /**
@@ -148,6 +157,10 @@ public class City {
     }
 
     // Utility Methods
+
+    public String toString() {
+        return cityToString();
+    }
     
     /**
      * Checks if this city is equal to another city.
@@ -187,16 +200,7 @@ public class City {
         this._numOfResidents = 0;
         return false;
     }
-
-    /**
-     * Calculates the distance between city center and central station.
-     *
-     * @return the Euclidean distance between center and station
-     */
-    public double distanceBetweenCenterAndStation() {
-        return this._cityCenter.distance(this._centralStation);
-    }
-
+    
     /**
      * Creates a new city based on this city with modified location.
      *
@@ -206,7 +210,7 @@ public class City {
      * @return a new City object with modified parameters
      */
     public City newCity(String newCityName, int dX, int dY) {
-        Date newDate = new Date(this._dateOfEstablishment);
+        Date newDate = new Date(this._dateEstablished);
         newDate = newDate.tomorrow();
         
         Point newCityCenter = new Point(this._cityCenter);
@@ -228,8 +232,8 @@ public class City {
      * @return true if establishment date is between the given dates
      */
     public boolean cityEstablishedBetweenDates(Date date1, Date date2) {
-        return (this._dateOfEstablishment.before(date2) && this._dateOfEstablishment.after(date1)) ||
-               (this._dateOfEstablishment.before(date1) && this._dateOfEstablishment.after(date2));
+        return (this._dateEstablished.before(date2) && this._dateEstablished.after(date1)) ||
+               (this._dateEstablished.before(date1) && this._dateEstablished.after(date2));
     }
 
     /**
@@ -239,6 +243,15 @@ public class City {
      * @return number of days difference
      */
     public int establishmentDateDiff(Date other) {
-        return this._dateOfEstablishment.difference(other);
+        return this._dateEstablished.difference(other);
+    }
+
+    /**
+     * Calculates the distance between city center and central station.
+     *
+     * @return the Euclidean distance between center and station
+     */
+    public double distanceBetweenCenterAndStation() {
+        return this._cityCenter.distance(this._centralStation);
     }
 }
