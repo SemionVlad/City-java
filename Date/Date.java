@@ -1,3 +1,23 @@
+/**
+ * The Date class implements a comprehensive date handling system based on the Gregorian calendar.
+ * This class provides functionality for date creation, manipulation, comparison, and validation
+ * with support for leap years and various calendar rules.
+ * 
+ * The class handles dates from year 0 to 9999, implementing:
+ * - Date validation including leap year rules
+ * - Date comparison operations
+ * - Day difference calculations
+ * - Next day computation
+ * - String formatting
+ * 
+ * All dates are validated according to the Gregorian calendar rules:
+ * - Regular years have 365 days
+ * - Leap years occur every 4 years
+ * - Century years are leap years only if divisible by 400
+ * 
+ * @author Shimon Esterkin (@SemionVlad)
+ * @version 2023B
+ */
 public class Date {
     // Month Constants
     private static final int JANUARY = 1;
@@ -14,9 +34,9 @@ public class Date {
     private static final int DECEMBER = 12;
 
     // Instance variables
-    private int day;
-    private int month;
-    private int year;
+    private int _day;
+    private int _month;
+    private int _year;
 
     // Private helper methods for date validation
 
@@ -133,14 +153,14 @@ public class Date {
      */
     public Date(int day, int month, int year) {
         if (!verifyDate(day, month, year)) {
-            this.day = 1;
-            this.month = 1;
-            this.year = 2000;
+            this._day = 1;
+            this._month = 1;
+            this._year = 2000;
             return;
         }
-        this.day = day;
-        this.month = month;
-        this.year = year;
+        this._day = day;
+        this._month = month;
+        this._year = year;
     }
 
     /**
@@ -149,9 +169,9 @@ public class Date {
      * @param other the Date to copy
      */
     public Date(Date other) {
-        this.day = other.getDay();
-        this.month = other.getMonth();
-        this.year = other.getYear();
+        this._day = other.getDay();
+        this._month = other.getMonth();
+        this._year = other.getYear();
     }
 
     // Getters and Setters
@@ -160,21 +180,21 @@ public class Date {
      * @return the day of the month
      */
     public int getDay() {
-        return day;
+        return this._day;
     }
 
     /**
      * @return the month (1-12)
      */
     public int getMonth() {
-        return month;
+        return this._month;
     }
 
     /**
      * @return the year
      */
     public int getYear() {
-        return year;
+        return this._year;
     }
 
     /**
@@ -183,8 +203,8 @@ public class Date {
      * @param dayToSet the new day value
      */
     public void setDay(int dayToSet) {
-        if (verifyDate(dayToSet, month, year)) {
-            day = dayToSet;
+        if (verifyDate(dayToSet, this._month, this._year)) {
+            this._day = dayToSet;
         }
     }
 
@@ -194,8 +214,8 @@ public class Date {
      * @param monthToSet the new month value
      */
     public void setMonth(int monthToSet) {
-        if (verifyDate(day, monthToSet, year)) {
-            month = monthToSet;
+        if (verifyDate(this._day, monthToSet, this._year)) {
+            this._month = monthToSet;
         }
     }
 
@@ -205,8 +225,8 @@ public class Date {
      * @param yearToSet the new year value
      */
     public void setYear(int yearToSet) {
-        if (verifyDate(day, month, yearToSet)) {
-            year = yearToSet;
+        if (verifyDate(this._day, this._month, yearToSet)) {
+            this._year = yearToSet;
         }
     }
 
@@ -219,9 +239,9 @@ public class Date {
      * @return true if the dates are equal
      */
     public boolean equals(Date other) {
-        return day == other.getDay() && 
-               month == other.getMonth() && 
-               year == other.getYear();
+        return this._day == other.getDay() && 
+               this._month == other.getMonth() && 
+               this._year == other.getYear();
     }
 
     /**
@@ -231,21 +251,21 @@ public class Date {
      * @return true if this date is before the other date
      */
     public boolean before(Date other) {
-        if (year < other.getYear()) {
+        if (this._year < other.getYear()) {
             return true;
         } 
-        if (year > other.getYear()) {
+        if (this._year > other.getYear()) {
             return false;
         }
         
-        if (month < other.getMonth()) {
+        if (this._month < other.getMonth()) {
             return true;
         } 
-        if (month > other.getMonth()) {
+        if (this._month > other.getMonth()) {
             return false;
         }
         
-        return day < other.getDay();
+        return this._day < other.getDay();
     }
 
     /**
@@ -265,7 +285,7 @@ public class Date {
      * @return number of days between the dates
      */
     public int difference(Date other) {
-        return calculateDate(day, month, year) - 
+        return calculateDate(this._day, this._month, this._year) - 
                calculateDate(other.getDay(), other.getMonth(), other.getYear());
     }
 
@@ -275,9 +295,9 @@ public class Date {
      * @return a new Date object for tomorrow
      */
     public Date tomorrow() {
-        int nextDay = day;
-        int nextMonth = month;
-        int nextYear = year;
+        int nextDay = this._day;
+        int nextMonth = this._month;
+        int nextYear = this._year;
     
         if (verifyDate(nextDay + 1, nextMonth, nextYear)) {
             nextDay++;
@@ -301,6 +321,6 @@ public class Date {
      */
     @Override
     public String toString() {
-        return String.format("%02d/%02d/%04d", day, month, year);
+        return String.format("%02d/%02d/%04d", this._day, this._month, this._year);
     }
 }
