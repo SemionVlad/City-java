@@ -1,12 +1,24 @@
+/**
+ * The City class represents an urban entity with geographical, demographic, and historical attributes.
+ * This class manages city data including location coordinates, population statistics, and establishment dates.
+ * It provides comprehensive functionality for city management and information tracking.
+ * 
+ * The class integrates geographical positioning using the Point class for coordinates
+ * and temporal data using the Date class for establishment tracking. It maintains
+ * city infrastructure information and population statistics while ensuring data validity.
+ * 
+ * @author Shimon Esterkin (SemionVlad)
+ * @version 2023B
+ */
 public class City {
     
     // Instance variables
-    private String cityName;
-    private Point cityCenter;
-    private Point centralStation;
-    private long numOfResidents;
-    private int noOfNeighborhoods;
-    private Date dateOfEstablishment;
+    private String _cityName;
+    private Point _cityCenter;
+    private Point _centralStation;
+    private long _numOfResidents;
+    private int _noOfNeighborhoods;
+    private Date _dateOfEstablishment;
 
     /**
      * Constructs a new City with all attributes including establishment date.
@@ -24,32 +36,12 @@ public class City {
      */
     public City(String cityName, int d, int m, int y, int cityCenterX, int cityCenterY, 
                 int centralStationX, int centralStationY, long numOfResidents, int noOfNeighborhoods) {
-        this.cityName = new String(cityName);
-        this.dateOfEstablishment = new Date(d, m, y);
-        this.cityCenter = new Point(cityCenterX, cityCenterY);
-        this.centralStation = new Point(centralStationX, centralStationY);
-        this.noOfNeighborhoods = (noOfNeighborhoods < 1) ? 1 : noOfNeighborhoods;
-        this.numOfResidents = (numOfResidents < 0) ? 0 : numOfResidents;
-    }
-
-    /**
-     * Constructs a new City without establishment date.
-     *
-     * @param cityName           the name of the city
-     * @param cityCenterX        x-coordinate of city center
-     * @param cityCenterY        y-coordinate of city center
-     * @param centralStationX    x-coordinate of central station
-     * @param centralStationY    y-coordinate of central station
-     * @param numOfResidents     number of residents (non-negative)
-     * @param noOfNeighborhoods  number of neighborhoods (minimum 1)
-     */
-    public City(String cityName, int cityCenterX, int cityCenterY, 
-                int centralStationX, int centralStationY, long numOfResidents, int noOfNeighborhoods) {
-        this.cityName = new String(cityName);
-        this.cityCenter = new Point(cityCenterX, cityCenterY);
-        this.centralStation = new Point(centralStationX, centralStationY);
-        this.noOfNeighborhoods = (noOfNeighborhoods < 1) ? 1 : noOfNeighborhoods;
-        this.numOfResidents = (numOfResidents < 0) ? 0 : numOfResidents;
+        this._cityName = new String(cityName);
+        this._dateOfEstablishment = new Date(d, m, y);
+        this._cityCenter = new Point(cityCenterX, cityCenterY);
+        this._centralStation = new Point(centralStationX, centralStationY);
+        this._noOfNeighborhoods = (noOfNeighborhoods < 1) ? 1 : noOfNeighborhoods;
+        this._numOfResidents = (numOfResidents < 0) ? 0 : numOfResidents;
     }
 
     /**
@@ -58,13 +50,13 @@ public class City {
      * @param other the City to copy
      */
     public City(City other) {
-        this.cityName = other.getCityName();
-        this.cityCenter = new Point(other.getCityCenter());
-        this.centralStation = new Point(other.getCentralStation());
-        this.noOfNeighborhoods = (other.getNoOfNeighborhoods() < 1) ? 1 : other.getNoOfNeighborhoods();
-        this.numOfResidents = (other.getNumOfResidents() < 0) ? 0 : other.getNumOfResidents();
-        if (other.dateOfEstablishment != null) {
-            this.dateOfEstablishment = new Date(other.getDateOfEstablishment());
+        this._cityName = other.getCityName();
+        this._cityCenter = new Point(other.getCityCenter());
+        this._centralStation = new Point(other.getCentralStation());
+        this._noOfNeighborhoods = (other.getNoOfNeighborhoods() < 1) ? 1 : other.getNoOfNeighborhoods();
+        this._numOfResidents = (other.getNumOfResidents() < 0) ? 0 : other.getNumOfResidents();
+        if (other._dateOfEstablishment != null) {
+            this._dateOfEstablishment = new Date(other.getDateOfEstablishment());
         }
     }
 
@@ -74,44 +66,44 @@ public class City {
      * @return the name of the city
      */
     public String getCityName() {
-        return cityName;
+        return this._cityName;
     }
 
     /**
      * @return a copy of the establishment date
      */
     public Date getDateOfEstablishment() {
-        return new Date(dateOfEstablishment.getDay(), 
-                       dateOfEstablishment.getMonth(), 
-                       dateOfEstablishment.getYear());
+        return new Date(this._dateOfEstablishment.getDay(), 
+                       this._dateOfEstablishment.getMonth(), 
+                       this._dateOfEstablishment.getYear());
     }
 
     /**
      * @return a copy of the city center point
      */
     public Point getCityCenter() {
-        return new Point(cityCenter);
+        return new Point(this._cityCenter);
     }
 
     /**
      * @return a copy of the central station point
      */
     public Point getCentralStation() {
-        return new Point(centralStation);
+        return new Point(this._centralStation);
     }
 
     /**
      * @return the number of residents
      */
     public long getNumOfResidents() {
-        return numOfResidents;
+        return this._numOfResidents;
     }
 
     /**
      * @return the number of neighborhoods
      */
     public int getNoOfNeighborhoods() {
-        return noOfNeighborhoods;
+        return this._noOfNeighborhoods;
     }
 
     // Setters
@@ -120,21 +112,21 @@ public class City {
      * @param cityName the new name of the city
      */
     public void setCityName(String cityName) {
-        this.cityName = new String(cityName);
+        this._cityName = new String(cityName);
     }
 
     /**
      * @param cityCenter the new city center location
      */
     public void setCityCenter(Point cityCenter) {
-        this.cityCenter = new Point(cityCenter);
+        this._cityCenter = new Point(cityCenter);
     }
 
     /**
      * @param centralStation the new central station location
      */
     public void setCentralStation(Point centralStation) {
-        this.centralStation = new Point(centralStation);
+        this._centralStation = new Point(centralStation);
     }
 
     /**
@@ -143,7 +135,7 @@ public class City {
      * @param numOfResidents the new number of residents
      */
     public void setNumOfResidents(long numOfResidents) {
-        this.numOfResidents = (numOfResidents < 0) ? 0 : numOfResidents;
+        this._numOfResidents = (numOfResidents < 0) ? 0 : numOfResidents;
     }
 
     /**
@@ -152,7 +144,7 @@ public class City {
      * @param noOfNeighborhoods the new number of neighborhoods
      */
     public void setNoOfNeighborhoods(int noOfNeighborhoods) {
-        this.noOfNeighborhoods = (noOfNeighborhoods < 1) ? 1 : noOfNeighborhoods;
+        this._noOfNeighborhoods = (noOfNeighborhoods < 1) ? 1 : noOfNeighborhoods;
     }
 
     // Utility Methods
@@ -164,11 +156,11 @@ public class City {
      * @return true if all attributes are equal
      */
     public boolean equals(City other) {
-        return centralStation.equals(other.getCentralStation()) &&
-               cityCenter.equals(other.getCityCenter()) &&
-               cityName.equals(other.getCityName()) &&
-               numOfResidents == other.getNumOfResidents() &&
-               noOfNeighborhoods == other.getNoOfNeighborhoods();
+        return this._centralStation.equals(other.getCentralStation()) &&
+               this._cityCenter.equals(other.getCityCenter()) &&
+               this._cityName.equals(other.getCityName()) &&
+               this._numOfResidents == other.getNumOfResidents() &&
+               this._noOfNeighborhoods == other.getNoOfNeighborhoods();
     }
 
     /**
@@ -178,7 +170,7 @@ public class City {
      * @param deltaY the change in y-coordinate
      */
     public void moveCentralStation(int deltaX, int deltaY) {
-        centralStation.move(deltaX, deltaY);
+        this._centralStation.move(deltaX, deltaY);
     }
 
     /**
@@ -188,11 +180,11 @@ public class City {
      * @return true if update successful, false if resulted in negative value
      */
     public boolean addResidents(long residentsUpdate) {
-        if (numOfResidents + residentsUpdate >= 0) {
-            numOfResidents += residentsUpdate;
+        if (this._numOfResidents + residentsUpdate >= 0) {
+            this._numOfResidents += residentsUpdate;
             return true;
         }
-        numOfResidents = 0;
+        this._numOfResidents = 0;
         return false;
     }
 
@@ -202,7 +194,7 @@ public class City {
      * @return the Euclidean distance between center and station
      */
     public double distanceBetweenCenterAndStation() {
-        return cityCenter.distance(centralStation);
+        return this._cityCenter.distance(this._centralStation);
     }
 
     /**
@@ -214,13 +206,13 @@ public class City {
      * @return a new City object with modified parameters
      */
     public City newCity(String newCityName, int dX, int dY) {
-        Date newDate = new Date(dateOfEstablishment);
+        Date newDate = new Date(this._dateOfEstablishment);
         newDate = newDate.tomorrow();
         
-        Point newCityCenter = new Point(cityCenter);
+        Point newCityCenter = new Point(this._cityCenter);
         newCityCenter.move(dX, dY);
         
-        Point newCentralStation = new Point(centralStation);
+        Point newCentralStation = new Point(this._centralStation);
         newCentralStation.move(dX, dY);
         
         return new City(newCityName, newDate.getDay(), newDate.getMonth(), newDate.getYear(),
@@ -236,8 +228,8 @@ public class City {
      * @return true if establishment date is between the given dates
      */
     public boolean cityEstablishedBetweenDates(Date date1, Date date2) {
-        return (dateOfEstablishment.before(date2) && dateOfEstablishment.after(date1)) ||
-               (dateOfEstablishment.before(date1) && dateOfEstablishment.after(date2));
+        return (this._dateOfEstablishment.before(date2) && this._dateOfEstablishment.after(date1)) ||
+               (this._dateOfEstablishment.before(date1) && this._dateOfEstablishment.after(date2));
     }
 
     /**
@@ -247,6 +239,6 @@ public class City {
      * @return number of days difference
      */
     public int establishmentDateDiff(Date other) {
-        return dateOfEstablishment.difference(other);
+        return this._dateOfEstablishment.difference(other);
     }
 }
