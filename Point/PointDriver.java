@@ -68,5 +68,6 @@ public class PointDriver {
         
         // Test 7: Calculate midpoint
         Point m1 = p1.middle(p3);         // Midpoint between p1 and p3
+        System.out.println("The middle point between " + p1.toString() + " and " + p3.toString() + " is: " + m1.toString() + "\n");
     }
 }
