@@ -160,4 +160,4 @@ City newCity = city.newCity("New City", 5, 5);
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 ---
-*Note: This implementation demonstrates object composition and data management in Java.*
+Created by [SemionVlad](https://github.com/SemionVlad) for academic and portfolio purposes. This repository is intended for **non-commercial**, **educational** sharing only.
