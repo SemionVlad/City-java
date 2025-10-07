@@ -1,8 +1,10 @@
-# City Class
-## Urban Location and Demographics Management System
+# City Class (Urban Location and Demographics Management System)
 
-**Author:** Shimon Esterkin (SemionVlad)  
-**Version:** 2023B
+## Author
+- **Name**: Shimon Esterkin  
+- **ID**: *****2258  
+- **Course**: System Programming Laboratory (20465)  
+- **Semester**: 2023A
 
 ## Dependencies
 This class requires two additional classes that should be included in your project:
