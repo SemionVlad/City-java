@@ -3,7 +3,7 @@
 ## Author
 - **Name**: Shimon Esterkin  
 - **ID**: *****2258   
-- **Semester**: 2023A
+- **Semester**: 2023B
 
 ## Dependencies
 This class requires two additional classes that should be included in your project:
