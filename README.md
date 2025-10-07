@@ -156,5 +156,8 @@ City newCity = city.newCity("New City", 5, 5);
 - 3D coordinate support
 - Multiple historical dates
 
+## 📄 License
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 ---
 *Note: This implementation demonstrates object composition and data management in Java.*
