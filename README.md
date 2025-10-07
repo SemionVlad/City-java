@@ -2,8 +2,7 @@
 
 ## Author
 - **Name**: Shimon Esterkin  
-- **ID**: *****2258  
-- **Course**: System Programming Laboratory (20465)  
+- **ID**: *****2258   
 - **Semester**: 2023A
 
 ## Dependencies
