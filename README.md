@@ -157,8 +157,9 @@ City newCity = city.newCity("New City", 5, 5);
 - 3D coordinate support
 - Multiple historical dates
 
+---
+
 ## 📄 License
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
----
 Created by [SemionVlad](https://github.com/SemionVlad) for academic and portfolio purposes. This repository is intended for **non-commercial**, **educational** sharing only.
